@@ -1,0 +1,42 @@
+<div class="movie-carousel">
+  <div class="movie-carousel__header">
+    <h2 class="movie-carousel__title">{{ title }}</h2>
+    
+    <div class="movie-carousel__controls">
+      <button class="carousel-btn carousel-btn--prev" 
+              [disabled]="isPreviousDisabled"
+              (click)="scrollPrevious()"
+              aria-label="Previous movies">
+        &#8249;
+      </button>
+      
+      <button class="carousel-btn carousel-btn--next" 
+              [disabled]="isNextDisabled"
+              (click)="scrollNext()"
+              aria-label="Next movies">
+        &#8250;
+      </button>
+    </div>
+  </div>
+
+  <div class="movie-carousel__container" #carousel>
+    <div class="movie-carousel__track" 
+         [style.transform]="carouselTransform">
+      <app-movie-card
+        *ngFor="let movie of movies; trackBy: trackByMovieId"
+        [movie]="movie"
+        [size]="cardSize"
+        [showDescription]="showDescription"
+        (movieClick)="onMovieClick($event)"
+        (playClick)="onPlayClick($event)"
+        (addToWatchlist)="onAddToWatchlist($event)"
+        class="movie-carousel__item">
+      </app-movie-card>
+    </div>
+  </div>
+
+  <!-- Loading state -->
+  <div class="movie-carousel__loading" *ngIf="movies.length === 0">
+    <div class="loading-skeleton" *ngFor="let item of [1,2,3,4,5]"></div>
+  </div>
+</div>

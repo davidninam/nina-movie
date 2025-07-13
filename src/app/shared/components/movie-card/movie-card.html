@@ -1,0 +1,52 @@
+<div class="movie-card" [class]="'movie-card--' + size" (click)="onMovieClick()" 
+     [attr.aria-label]="'Movie: ' + movie.title">
+  <div class="movie-card__poster">
+    <img [src]="posterImage" [alt]="movie.title" class="movie-card__image">
+    
+    <!-- Overlay with action buttons -->
+    <div class="movie-card__overlay">
+      <button class="movie-card__play-btn" 
+              (click)="onPlayClick($event)"
+              aria-label="Play movie">
+        <i class="icon-play"></i>
+      </button>
+      
+      <button class="movie-card__watchlist-btn" 
+              (click)="onAddToWatchlist($event)"
+              aria-label="Add to watchlist">
+        <i class="icon-plus"></i>
+      </button>
+    </div>
+
+    <!-- Quality badge -->
+    <div class="movie-card__quality" *ngIf="movie.quality.length > 0">
+      {{ movie.quality[0] }}
+    </div>
+
+    <!-- Rating -->
+    <div class="movie-card__rating">
+      <div class="stars">
+        <span class="star" 
+              *ngFor="let star of [1,2,3,4,5]; let i = index"
+              [class.star--filled]="i < ratingStars">
+          ★
+        </span>
+      </div>
+      <span class="rating-text">{{ movie.rating.toFixed(1) }}</span>
+    </div>
+  </div>
+
+  <div class="movie-card__content">
+    <h3 class="movie-card__title">{{ movie.title }}</h3>
+    
+    <div class="movie-card__meta">
+      <span class="year">{{ movie.year }}</span>
+      <span class="duration">{{ formattedDuration }}</span>
+      <span class="genre" *ngIf="movie.genre.length > 0">{{ movie.genre[0] }}</span>
+    </div>
+
+    <p class="movie-card__description" *ngIf="showDescription">
+      {{ movie.description }}
+    </p>
+  </div>
+</div>
