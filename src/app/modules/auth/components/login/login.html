@@ -1,0 +1,81 @@
+<div class="login-container">
+  <!-- Background video or image -->
+  <div class="login-background">
+    <div class="background-overlay"></div>
+  </div>
+
+  <!-- Login form -->
+  <div class="login-form-wrapper">
+    <div class="login-form-container">
+      <!-- Logo -->
+      <div class="login-logo">
+        <h1>NINAMovie</h1>
+        <p class="tagline">Explora lo invisible</p>
+      </div>
+
+      <!-- Login form -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <h2 class="form-title">Sign In</h2>
+
+        <!-- Error message -->
+        <div class="error-message" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+
+        <!-- Email field -->
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            class="form-input"
+            [class.form-input--error]="isFieldInvalid('email')"
+            placeholder="Enter your email"
+            autocomplete="email">
+          <div class="field-error" *ngIf="isFieldInvalid('email')">
+            {{ getFieldError('email') }}
+          </div>
+        </div>
+
+        <!-- Password field -->
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            class="form-input"
+            [class.form-input--error]="isFieldInvalid('password')"
+            placeholder="Enter your password"
+            autocomplete="current-password">
+          <div class="field-error" *ngIf="isFieldInvalid('password')">
+            {{ getFieldError('password') }}
+          </div>
+        </div>
+
+        <!-- Submit button -->
+        <button
+          type="submit"
+          class="submit-btn"
+          [disabled]="loginForm.invalid || isLoading"
+          [class.submit-btn--loading]="isLoading">
+          <span *ngIf="!isLoading">Sign In</span>
+          <span *ngIf="isLoading" class="loading-text">
+            <span class="spinner"></span>
+            Signing In...
+          </span>
+        </button>
+
+        <!-- Register link -->
+        <div class="form-footer">
+          <p>Don't have an account? 
+            <button type="button" class="link-btn" (click)="navigateToRegister()">
+              Sign up now
+            </button>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

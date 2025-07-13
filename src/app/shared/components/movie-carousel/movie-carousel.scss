@@ -1,0 +1,132 @@
+// Movie Carousel Component Styles
+// Netflix-style horizontal scrolling carousel
+
+.movie-carousel {
+  margin-bottom: 48px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding: 0 16px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+  }
+
+  &__controls {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__container {
+    position: relative;
+    overflow: hidden;
+    padding: 0 16px;
+  }
+
+  &__track {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  &__item {
+    flex: 0 0 auto;
+  }
+
+  &__loading {
+    display: flex;
+    gap: 16px;
+    padding: 0 16px;
+  }
+}
+
+.carousel-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--prev {
+    margin-right: 8px;
+  }
+
+  &--next {
+    margin-left: 8px;
+  }
+}
+
+.loading-skeleton {
+  width: 220px;
+  height: 330px;
+  background: linear-gradient(
+    90deg,
+    #2a2a2a 25%,
+    #3a3a3a 50%,
+    #2a2a2a 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+  flex: 0 0 auto;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .movie-carousel {
+    &__header {
+      padding: 0 8px;
+    }
+
+    &__container {
+      padding: 0 8px;
+    }
+
+    &__title {
+      font-size: 20px;
+    }
+
+    &__loading {
+      padding: 0 8px;
+    }
+  }
+
+  .loading-skeleton {
+    width: 180px;
+    height: 270px;
+  }
+}
