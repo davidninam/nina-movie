@@ -1,0 +1,55 @@
+<div class="home-page">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Welcome to NINAMovie</h1>
+      <p class="hero-subtitle">Explora lo invisible - Discover unlimited entertainment</p>
+      <div class="hero-actions">
+        <button class="btn btn--primary">
+          <span class="btn-icon">▶</span>
+          Watch Now
+        </button>
+        <button class="btn btn--secondary">
+          <span class="btn-icon">ℹ</span>
+          More Info
+        </button>
+      </div>
+    </div>
+    <div class="hero-background">
+      <div class="hero-overlay"></div>
+    </div>
+  </section>
+
+  <!-- Movie Carousels -->
+  <main class="movie-sections">
+    <app-movie-carousel
+      title="Featured Movies"
+      [movies]="featuredMovies"
+      cardSize="large"
+      [showDescription]="false"
+      (movieClick)="onMovieClick($event)"
+      (playClick)="onPlayClick($event)"
+      (addToWatchlist)="onAddToWatchlist($event)">
+    </app-movie-carousel>
+
+    <app-movie-carousel
+      title="Popular Movies"
+      [movies]="popularMovies"
+      cardSize="medium"
+      [showDescription]="false"
+      (movieClick)="onMovieClick($event)"
+      (playClick)="onPlayClick($event)"
+      (addToWatchlist)="onAddToWatchlist($event)">
+    </app-movie-carousel>
+
+    <app-movie-carousel
+      title="Action Movies"
+      [movies]="actionMovies"
+      cardSize="medium"
+      [showDescription]="false"
+      (movieClick)="onMovieClick($event)"
+      (playClick)="onPlayClick($event)"
+      (addToWatchlist)="onAddToWatchlist($event)">
+    </app-movie-carousel>
+  </main>
+</div>

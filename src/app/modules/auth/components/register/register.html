@@ -1,0 +1,141 @@
+<div class="register-container">
+  <!-- Background -->
+  <div class="register-background">
+    <div class="background-overlay"></div>
+  </div>
+
+  <!-- Register form -->
+  <div class="register-form-wrapper">
+    <div class="register-form-container">
+      <!-- Logo -->
+      <div class="register-logo">
+        <h1>NINAMovie</h1>
+        <p class="tagline">Explora lo invisible</p>
+      </div>
+
+      <!-- Register form -->
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+        <h2 class="form-title">Create Account</h2>
+
+        <!-- Error message -->
+        <div class="error-message" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+
+        <!-- Name fields -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName" class="form-label">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              formControlName="firstName"
+              class="form-input"
+              [class.form-input--error]="isFieldInvalid('firstName')"
+              placeholder="First name">
+            <div class="field-error" *ngIf="isFieldInvalid('firstName')">
+              {{ getFieldError('firstName') }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              formControlName="lastName"
+              class="form-input"
+              [class.form-input--error]="isFieldInvalid('lastName')"
+              placeholder="Last name">
+            <div class="field-error" *ngIf="isFieldInvalid('lastName')">
+              {{ getFieldError('lastName') }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Username field -->
+        <div class="form-group">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            id="username"
+            formControlName="username"
+            class="form-input"
+            [class.form-input--error]="isFieldInvalid('username')"
+            placeholder="Choose a username">
+          <div class="field-error" *ngIf="isFieldInvalid('username')">
+            {{ getFieldError('username') }}
+          </div>
+        </div>
+
+        <!-- Email field -->
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            class="form-input"
+            [class.form-input--error]="isFieldInvalid('email')"
+            placeholder="Enter your email">
+          <div class="field-error" *ngIf="isFieldInvalid('email')">
+            {{ getFieldError('email') }}
+          </div>
+        </div>
+
+        <!-- Password fields -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              id="password"
+              formControlName="password"
+              class="form-input"
+              [class.form-input--error]="isFieldInvalid('password')"
+              placeholder="Password">
+            <div class="field-error" *ngIf="isFieldInvalid('password')">
+              {{ getFieldError('password') }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword" class="form-label">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              formControlName="confirmPassword"
+              class="form-input"
+              [class.form-input--error]="isFieldInvalid('confirmPassword')"
+              placeholder="Confirm password">
+            <div class="field-error" *ngIf="isFieldInvalid('confirmPassword')">
+              {{ getFieldError('confirmPassword') }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit button -->
+        <button
+          type="submit"
+          class="submit-btn"
+          [disabled]="registerForm.invalid || isLoading"
+          [class.submit-btn--loading]="isLoading">
+          <span *ngIf="!isLoading">Create Account</span>
+          <span *ngIf="isLoading" class="loading-text">
+            <span class="spinner"></span>
+            Creating Account...
+          </span>
+        </button>
+
+        <!-- Login link -->
+        <div class="form-footer">
+          <p>Already have an account? 
+            <button type="button" class="link-btn" (click)="navigateToLogin()">
+              Sign in here
+            </button>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
